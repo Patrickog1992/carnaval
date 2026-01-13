@@ -28,7 +28,10 @@ export const Quiz: React.FC<QuizProps> = ({ onComplete }) => {
   });
   const [imcData, setImcData] = useState<{value: string, show: boolean}>({ value: '', show: false });
 
-  // Removed useEffect for image fetching to ensure instant render
+  // Scroll to top whenever step changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentStepIndex]);
 
   const handleAnswer = (key: keyof QuizState, value: any) => {
     setAnswers(prev => ({ ...prev, [key]: value }));
