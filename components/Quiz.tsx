@@ -78,18 +78,16 @@ export const Quiz: React.FC<QuizProps> = ({ onComplete }) => {
   // Render helpers
   const renderOption = (label: string, icon?: string, description?: string) => {
     return (
-        <Button 
-          variant="ghost" 
-          fullWidth 
+        <button 
           onClick={() => handleAnswer(currentStep as keyof QuizState, label)}
-          className="mb-3 text-left justify-start h-auto py-6"
+          className="w-full mb-3 p-4 bg-white border-2 border-gray-100 rounded-xl shadow-sm text-left flex flex-col items-start transition-all duration-200 active:scale-95 active:border-carnival-orange active:bg-orange-50 outline-none tap-highlight-transparent"
         >
-          <div className="flex flex-col items-start text-left w-full">
+          <div className="flex flex-col items-start text-left w-full pointer-events-none">
             {icon && <span className="text-2xl mb-2">{icon}</span>}
-            <span className="text-lg">{label}</span>
+            <span className="text-lg font-semibold text-gray-800">{label}</span>
             {description && <span className="text-sm font-light text-gray-500 mt-1">{description}</span>}
           </div>
-        </Button>
+        </button>
       );
   };
 
@@ -115,7 +113,7 @@ export const Quiz: React.FC<QuizProps> = ({ onComplete }) => {
         ></div>
       </div>
 
-      <div className="flex-1 flex flex-col justify-center">
+      <div className="flex-1 flex flex-col justify-center animate-fadeIn">
         
         {/* Step Content */}
         {currentStep === 'gender' && (
@@ -124,21 +122,21 @@ export const Quiz: React.FC<QuizProps> = ({ onComplete }) => {
             <div className="grid grid-cols-2 gap-4">
               <button 
                 onClick={() => handleAnswer('gender', 'HOMEM')}
-                className="flex flex-col items-center p-4 border-2 border-gray-200 rounded-xl hover:border-carnival-orange transition-all bg-white shadow-sm"
+                className="flex flex-col items-center p-4 border-2 border-gray-200 rounded-xl active:border-carnival-orange active:scale-95 transition-all bg-white shadow-sm outline-none tap-highlight-transparent"
               >
-                <div className="w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
-                  <img src={GENDER_IMAGES.male} alt="Homem" className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500" />
+                <div className="w-full aspect-[3/4] overflow-hidden rounded-lg mb-4 pointer-events-none">
+                  <img src={GENDER_IMAGES.male} alt="Homem" className="w-full h-full object-cover" />
                 </div>
-                <span className="font-bold text-lg">HOMEM</span>
+                <span className="font-bold text-lg pointer-events-none">HOMEM</span>
               </button>
               <button 
                 onClick={() => handleAnswer('gender', 'MULHER')}
-                className="flex flex-col items-center p-4 border-2 border-gray-200 rounded-xl hover:border-carnival-orange transition-all bg-white shadow-sm"
+                className="flex flex-col items-center p-4 border-2 border-gray-200 rounded-xl active:border-carnival-orange active:scale-95 transition-all bg-white shadow-sm outline-none tap-highlight-transparent"
               >
-                 <div className="w-full aspect-[3/4] overflow-hidden rounded-lg mb-4">
-                  <img src={GENDER_IMAGES.female} alt="Mulher" className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500" />
+                 <div className="w-full aspect-[3/4] overflow-hidden rounded-lg mb-4 pointer-events-none">
+                  <img src={GENDER_IMAGES.female} alt="Mulher" className="w-full h-full object-cover" />
                 </div>
-                <span className="font-bold text-lg">MULHER</span>
+                <span className="font-bold text-lg pointer-events-none">MULHER</span>
               </button>
             </div>
           </>
@@ -239,8 +237,8 @@ export const Quiz: React.FC<QuizProps> = ({ onComplete }) => {
           <>
             <h2 className="text-2xl font-bold mb-6">Digite seu peso atual</h2>
             <input 
-              type="text" 
-              placeholder="Ex: 70kg" 
+              type="tel" 
+              placeholder="Ex: 70" 
               className="w-full p-4 border-2 border-gray-300 rounded-xl text-xl mb-6 focus:border-carnival-orange focus:outline-none"
               onChange={(e) => handleInput('currentWeight', e.target.value)}
               value={answers.currentWeight || ''}
@@ -253,8 +251,8 @@ export const Quiz: React.FC<QuizProps> = ({ onComplete }) => {
           <>
             <h2 className="text-2xl font-bold mb-6">Informe sua altura</h2>
             <input 
-              type="text" 
-              placeholder="Ex: 1.70m" 
+              type="tel" 
+              placeholder="Ex: 1.70" 
               className="w-full p-4 border-2 border-gray-300 rounded-xl text-xl mb-6 focus:border-carnival-orange focus:outline-none"
               onChange={(e) => handleInput('height', e.target.value)}
               value={answers.height || ''}
@@ -327,13 +325,13 @@ export const Quiz: React.FC<QuizProps> = ({ onComplete }) => {
                 <button
                   key={area}
                   onClick={() => handleMultiSelect('focusAreas', area)}
-                  className={`w-full p-4 rounded-xl border-2 flex items-center justify-between transition-all ${
+                  className={`w-full p-4 rounded-xl border-2 flex items-center justify-between transition-all active:scale-95 outline-none tap-highlight-transparent ${
                     answers.focusAreas?.includes(area)
                       ? 'border-carnival-orange bg-orange-50 text-carnival-orange'
-                      : 'border-gray-200 hover:bg-gray-50'
+                      : 'border-gray-200 bg-white active:bg-gray-50'
                   }`}
                 >
-                  <span className="font-semibold">{area}</span>
+                  <span className="font-semibold pointer-events-none">{area}</span>
                   {answers.focusAreas?.includes(area) && <Check className="w-5 h-5" />}
                 </button>
               ))}
