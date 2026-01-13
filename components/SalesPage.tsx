@@ -8,6 +8,8 @@ interface SalesPageProps {
   quizData: QuizState;
 }
 
+const checkoutUrl = "https://go.perfectpay.com.br/PPU38CQ5UST";
+
 const PhoneCarousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -250,6 +252,10 @@ export const SalesPage: React.FC<SalesPageProps> = ({ quizData }) => {
 
   const toggleFaq = (idx: number) => {
     setOpenFaq(openFaq === idx ? null : idx);
+  };
+
+  const handleCheckout = () => {
+    window.location.href = checkoutUrl;
   };
 
   // Button style for Sales Page - Green Pulsating
@@ -518,7 +524,10 @@ export const SalesPage: React.FC<SalesPageProps> = ({ quizData }) => {
          <p className="text-xl mb-6">POR APENAS</p>
          <div className="text-6xl font-extrabold text-green-400 mb-8">R$ 37,00</div>
          
-         <Button className={`w-full max-w-md mx-auto text-xl py-6 ${btnStyle}`}>
+         <Button 
+            className={`w-full max-w-md mx-auto text-xl py-6 ${btnStyle}`}
+            onClick={handleCheckout}
+         >
             QUERO MEU PROTOCOLO AGORA
          </Button>
       </div>
@@ -539,7 +548,7 @@ export const SalesPage: React.FC<SalesPageProps> = ({ quizData }) => {
           <p className="font-bold">🎯 É simples:</p>
           <p>Ou você começa a sentir seu corpo destravar e entrar no ritmo certo até o Carnaval, ou não paga absolutamente nada.</p>
         </div>
-        <Button fullWidth className={btnStyle}>QUERO AGORA</Button>
+        <Button fullWidth className={btnStyle} onClick={handleCheckout}>QUERO AGORA</Button>
       </div>
 
       {/* Comparison */}
@@ -581,7 +590,7 @@ export const SalesPage: React.FC<SalesPageProps> = ({ quizData }) => {
         </div>
 
         <div className="mt-8 text-center">
-          <Button fullWidth className={btnStyle}>QUERO MINHA VAGA</Button>
+          <Button fullWidth className={btnStyle} onClick={handleCheckout}>QUERO MINHA VAGA</Button>
         </div>
       </div>
 
@@ -614,7 +623,7 @@ export const SalesPage: React.FC<SalesPageProps> = ({ quizData }) => {
         </div>
         
         <div className="mt-12 text-center">
-           <Button className={`text-xl py-6 px-12 ${btnStyle}`}>COMEÇAR AGORA</Button>
+           <Button className={`text-xl py-6 px-12 ${btnStyle}`} onClick={handleCheckout}>COMEÇAR AGORA</Button>
         </div>
       </div>
 
